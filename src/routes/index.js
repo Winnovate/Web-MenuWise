@@ -174,7 +174,7 @@ const authProtectedRoutes = [
   { path: "/todaysorder", component: TodaysOrder},
   {path: "/restaurantregister", component: RestaurantRegister},
 
-  { path: "/", exact: true, component: () => <Redirect to="/qrgenerate" /> }
+  { path: "/", exact: true, component: () => <Redirect to="/addcategory" /> }
 ];
 
 const publicRoutes = [

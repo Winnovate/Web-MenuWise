@@ -212,7 +212,7 @@ class AddUpdateMenu extends Component {
                     > 
                                                 
                         <ModalHeader toggle={this.tog_standard}>
-                            Add Category
+                            Add Menus
                         </ModalHeader >
                         <ModalBody>
                             <Card>

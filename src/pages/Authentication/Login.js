@@ -46,6 +46,7 @@ class Pageslogin extends Component {
           if(localStorage.getItem("user")){
             console.log("Something is stored")
           }
+          window.location.assign("/todaysorder");
           this.setState({ error: null });
           // Perform additional logic for a successful login
         })
@@ -55,10 +56,11 @@ class Pageslogin extends Component {
             } else {
               console.error(error);
             }
+            this.props.checkLogin(this.state.email, this.state.password, this.props.history);
           // console.log(error)
           // this.setState({ error });
         });
-        this.props.checkLogin(this.state.email, this.state.password, this.props.history);
+        
     }
 
     render() {
