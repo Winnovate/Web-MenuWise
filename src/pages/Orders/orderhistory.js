@@ -2,17 +2,7 @@ import React, { Component } from "react";
 // import { Row, Col } from "reactstrap";
 import { connect } from "react-redux";
 
-import {
-  Col,
-  Row,
-  Card,
-  CardBody,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Button,
-} from "reactstrap";
+import {Col, Row, Card, CardBody, Modal, ModalHeader, ModalBody, ModalFooter, Button, Spinner} from "reactstrap";
 //Import Action to copy breadcrumb items from local state to redux state
 import { setBreadcrumbItems } from "../../store/actions";
 
@@ -20,7 +10,7 @@ import { MDBDataTable } from "mdbreact";
 
 //Import datatable css
 import "../Tables/datatables.scss";
-import { getDatabase, ref, onValue, set } from "firebase/database";
+import { getDatabase, ref, onValue, orderByChild, query, equalTo} from "firebase/database";
 
 class OrderHistory extends Component {
   constructor(props) {
@@ -29,86 +19,82 @@ class OrderHistory extends Component {
       breadcrumbItems: [{ title: "Order History", link: "#" }],
       orderFound: false,
       orderHistory: [],
+      isLoading : true,
     };
   }
 
   componentDidMount() {
-    this.props.setBreadcrumbItems("Order History", this.state.breadcrumbItems);
     this.getOrderHistory();
+    this.props.setBreadcrumbItems("Order History", this.state.breadcrumbItems);
   }
 
-  getOrderHistory() {
-    const db = getDatabase();
-    const starCountRef = ref(
-      db, // localStorage.getItem("user")
-      "/restruants/" + "0d73ce9a-63bf-425a-b051-858ce0e3b249" + "/orders"
-    );
-    onValue(starCountRef, (snapshot) => {
-      const orders = snapshot.val();
+  async getOrderHistory() {
+    const db = getDatabase();  // localStorage.getItem("user")
+    const orders = [];
 
-      if (orders != null) {
-        this.setState({
-          orderFound: true,
-        });
+    const dbRef = query( ref( db, "/restruants/" + "0d73ce9a-63bf-425a-b051-858ce0e3b249" + "/orders"), orderByChild("orderStatus"), equalTo("completed"));
+    onValue(dbRef, (snapshot) => {
+      snapshot.forEach((childSnapShot) => {
+        orders.push(childSnapShot.val());
+      });
 
-        this.splitData(orders);
-      } else {
-        console.log("No Data Found");
-        this.setState({
-          orderFound: false,
-        });
-      }
-    });
-  }
-
-  splitData(data) {
-    let orderList = [];
-    Object.keys(data).map((order) => {
-      if (data[order].orderStatus === "completed") {
-        orderList.push(data[order]);
-      }
-    });
-
-    orderList.sort(
-      (a, b) =>
+    if (orders != null) {
+      
+      orders.sort((a, b) =>
         new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
-    );
-
-    this.setState({
-      orderHistory: orderList,
+      );
+      
+      this.setState({
+        orderFound: true,
+        orderHistory: orders,
+        isLoading:false,
+      });
+    } 
+    else {
+      console.log("No Data Found");
+      this.setState({
+        orderFound: false,
+        isLoading:false,
+      });
+    }
     });
   }
-
   render() {
-    const data = {
-      columns: [
-        {
-          label: "Customer Name",
-          field: "customerName",
-          width: 150,
-        },
-        {
-          label: "Order Items",
-          field: "orderItems",
-          width: 270,
-        },
-        {
-          label: "Order Status",
-          field: "orderStatus",
-          width: 270,
-        },
-        {
-          label: "Timestamp",
-          field: "timestamp",
-          sort: "desc",
-          width: 270,
-        },
-      ],
-      rows: this.state.orderHistory,
-    };
+  const data = {
+    columns: [
+      {
+        label: "Customer Name",
+        field: "customerName",
+        width: 150,
+      },
+      {
+        label: "Order Items",
+        field: "orderItems",
+        width: 270,
+      },
+      {
+        label: "Order Status",
+        field: "orderStatus",
+        width: 270,
+      },
+      {
+        label: "Timestamp",
+        field: "timestamp",
+        sort: "desc",
+        width: 270,
+      },
+    ],
+    rows: this.state.orderHistory.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()),
+  };
     return (
       <React.Fragment>
-        {!this.state.orderFound ? (
+        {this.state.isLoading ? (
+        <>
+          <center><Spinner animation="border" role="status"/></center>
+        </>
+      ): 
+      (<>
+       {!this.state.orderFound ? (
           <>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Row>
@@ -142,6 +128,8 @@ class OrderHistory extends Component {
             </div>
           </>
         )}
+      </>
+      )} 
       </React.Fragment>
     );
   }
