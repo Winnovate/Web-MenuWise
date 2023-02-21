@@ -57,7 +57,7 @@ class TodaysOrder extends Component {
       ref(
         db,
         "/restruants/" +
-          "0d73ce9a-63bf-425a-b051-858ce0e3b249" +
+          localStorage.getItem("user") +
           "/orders/" +
           orderId +
           "/"
@@ -70,37 +70,18 @@ class TodaysOrder extends Component {
   };
 
   async getOrderList() {
-    const db = getDatabase(); // localStorage.getItem("user")
+    const db = getDatabase(); //
     const orders = [];
-    let action = [
-      { value: "Pending" },
-      { value: "In Progress" },
-      { value: "completed" },
-    ];
     let data;
 
     let dbRef = query(
-      ref(
-        db,
-        "/restruants/" + "0d73ce9a-63bf-425a-b051-858ce0e3b249" + "/orders"
-      ),
+      ref(db, "/restruants/" + localStorage.getItem("user") + "/orders"),
       orderByChild("orderStatus"),
       equalTo("Pending")
     );
     onValue(dbRef, (snapshot) => {
       snapshot.forEach((childSnapShot) => {
         data = childSnapShot.val();
-        //
-        //data.action = <Button id ={data["order-id"]} onClick={this.handleChange} type="button" color="primary">Pending</Button>
-        data.action = (
-          <DropdownMenu id={data["order-id"]}>
-            <DropdownItem header> {data["orderStatus"]} </DropdownItem>{" "}
-            <DropdownItem>Pending</DropdownItem>{" "}
-            <DropdownItem>In Progress</DropdownItem>{" "}
-            <DropdownItem>completed</DropdownItem>
-          </DropdownMenu>
-        );
-        // data.action = <Select id = {data["order-id"]} options = {action} onChange = {this.handleChange} defaultValue={data["orderStatus"]}></Select>
         data.action = (
           <StatusButton
             value={data["orderStatus"]}
@@ -113,20 +94,20 @@ class TodaysOrder extends Component {
     });
 
     dbRef = query(
-      ref(
-        db,
-        "/restruants/" + "0d73ce9a-63bf-425a-b051-858ce0e3b249" + "/orders"
-      ),
+      ref(db, "/restruants/" + localStorage.getItem("user") + "/orders"),
       orderByChild("orderStatus"),
       equalTo("In Progress")
     );
     onValue(dbRef, (snapshot) => {
       snapshot.forEach((childSnapShot) => {
         data = childSnapShot.val();
-        // data.action = ()
-
-        //data.action = <Select id = {data["order-id"]} options = {action} onChange = {this.handleChange} defaultValue={data["orderStatus"]}></Select>
-        //data.action = <Button id ={data["order-id"]} onClick = {() => {this.handleChange(data["order-id"])}} type="button" color="success">In Progress</Button>
+        data.action = (
+          <StatusButton
+            value={data["orderStatus"]}
+            orderID={data["order-id"]}
+            handleStatusChange={this.handleChange}
+          />
+        );
         orders.push(data);
       });
 

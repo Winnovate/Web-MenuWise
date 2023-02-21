@@ -10,7 +10,7 @@ class QrGenereate extends Component {
   constructor(props) {
     super(props);
     this.qr = "";
-    this.restaurantID = "0d73ce9a-63bf-425a-b051-858ce0e3b249"; //localStorage.getItem("user"); //here we need to assign restaurant ID.
+    this.restaurantID = localStorage.getItem("user");
     this.state = {
       breadcrumbItems: [{ title: "QR Code", link: "#" }],
     };

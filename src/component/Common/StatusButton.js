@@ -10,9 +10,15 @@ class StatusButton extends Component {
     this.ref = React.createRef();
     this.state = {
       constValues: ["Pending", "In Progress", "completed"],
-      currentValue: "Pending",
+      currentValue: "Fetching...",
       dropDownToggle: false,
     };
+  }
+
+  componentDidMount() {
+    this.setState({
+      currentValue: this.props.value,
+    });
   }
 
   handleChange = (newValue) => {
