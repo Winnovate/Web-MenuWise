@@ -28,6 +28,63 @@
   color: #61dafb;
 }
 
+.c-btn-wrapper{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  position: relative;
+}
+
+.c-status-btn{
+  background-color: #7a6fbe;
+  color: White;
+  padding: 0 6px 0 10px;
+  border-radius: 10px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-color: #7a6fbe;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown-toggle-btn{
+  background-color: #9d95d2;
+  padding: 0 0px;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  cursor: pointer;
+}
+
+.c-dropdown-wrapper{
+  position: absolute;
+  top: 110%;
+  box-shadow: 5px 5px 5px #c6cdda, -5px 5px 5px #d5dae5;
+  width: 95px;
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.c-dropdown-items{
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.c-dropdown-items:hover{
+  background: #2b3a4a;
+  color: white
+
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
