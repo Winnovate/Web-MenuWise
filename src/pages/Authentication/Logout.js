@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import  secureLocalStorage  from  "react-secure-storage";
 class Logout extends Component {
 
     constructor(props) {
@@ -10,7 +10,7 @@ class Logout extends Component {
     componentDidMount() {
      
         // Remove all Item from localstorage and redirect to login page
-        localStorage.removeItem('user');
+        secureLocalStorage.removeItem('user');
         this.props.history.push('/login');
     }
 

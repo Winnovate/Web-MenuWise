@@ -7,13 +7,14 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBSSzH3Sizp3CCFbJ7ssUzO4bps6wwabl8",
-  authDomain: "menuwise-ed7be.firebaseapp.com",
-  databaseURL: "https://menuwise-ed7be-default-rtdb.firebaseio.com",
-  projectId: "menuwise-ed7be",
-  storageBucket: "menuwise-ed7be.appspot.com",
-  messagingSenderId: "786090779059",
-  appId: "1:786090779059:web:e7fffbd4b4487e50106bc6"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 // Initialize Firebase

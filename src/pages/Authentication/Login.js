@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { checkLogin, clearErrorLogin, clearError } from '../../store/actions';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
-
+import  secureLocalStorage  from  "react-secure-storage";
 //firebase
 // import {auth} from "../../firebase-config";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -42,8 +42,8 @@ class Pageslogin extends Component {
         signInWithEmailAndPassword(auth, this.state.email, this.state.password)
         .then(user => {
           console.log(user.user.uid, "user id");
-          localStorage.setItem("user", JSON.stringify(user.user.uid));
-          if(localStorage.getItem("user")){
+          secureLocalStorage.setItem("user", JSON.stringify(user.user.uid));
+          if(secureLocalStorage.getItem("user")){
             console.log("Something is stored")
           }
           window.location.assign("/todaysorder");

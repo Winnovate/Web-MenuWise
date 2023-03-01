@@ -1,8 +1,8 @@
 import axios from 'axios';
-
+import  secureLocalStorage  from  "react-secure-storage";
 //Set the logged in user data in local session 
 const setLoggeedInUser = (user) => {
-    localStorage.setItem('user', JSON.stringify(user));
+    secureLocalStorage.setItem('user', JSON.stringify(user));
 }
 
 // Gets the logged in user data from local session 
@@ -14,8 +14,8 @@ const setLoggeedInUser = (user) => {
 // }
 
 const getLoggedInUser = () => {
-        if(!localStorage.getItem('user')) return null;
-        return localStorage.getItem('user');
+        if(!secureLocalStorage.getItem('user')) return null;
+        return secureLocalStorage.getItem('user');
 }
 
 //is user is logged in

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button } from "reactstrap";
 import { connect } from "react-redux";
 import QRCode from "qrcode";
-
+import  secureLocalStorage  from  "react-secure-storage";
 //Import Action to copy breadcrumb items from local state to redux state
 import { setBreadcrumbItems } from "../../store/actions";
 
@@ -10,7 +10,7 @@ class QrGenereate extends Component {
   constructor(props) {
     super(props);
     this.qr = "";
-    this.restaurantID = localStorage.getItem("user"); //here we need to assign restaurant ID.
+    this.restaurantID = secureLocalStorage.getItem("user"); //here we need to assign restaurant ID.
     this.state = {
       breadcrumbItems: [{ title: "QR Code", link: "#" }],
     };

@@ -113,7 +113,7 @@ class Topbar extends Component {
     
                         <ProfileMenu/>
     
-                        <SettingsButton/>
+                        {/* <SettingsButton/> */}
     
                     </div>
                 </Container>

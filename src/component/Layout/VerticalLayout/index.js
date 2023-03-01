@@ -80,7 +80,7 @@ class LayoutV extends Component {
                 <Breadcrumb/>
                 {this.props.children}
                 {/* render Footer */}
-                <Footer/>
+                {/* <Footer/> */}
               </Container>
             </div>
           </div>
