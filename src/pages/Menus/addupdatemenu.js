@@ -19,7 +19,7 @@ import { MDBDataTable } from 'mdbreact';
 import "../Tables/datatables.scss";
 import { getDatabase, ref, onValue, set } from "firebase/database";
 import uniqid from 'uniqid';
-
+import  secureLocalStorage  from  "react-secure-storage";
 class AddUpdateMenu extends Component {
     constructor(props) {
         super(props);
@@ -36,7 +36,7 @@ class AddUpdateMenu extends Component {
             price: '',
             description: '',
             item: [],
-            userid: localStorage.getItem("user")
+            userid: secureLocalStorage.getItem("user")
         }
         this.tog_standard = this.tog_standard.bind(this);
         this.changeHandler = this.changeHandler.bind(this);
@@ -87,7 +87,7 @@ class AddUpdateMenu extends Component {
             }]
         }
        
-        const starCountRef = ref(db, "/restruants/" + localStorage.getItem("user") + "/items");
+        const starCountRef = ref(db, "/restruants/" + secureLocalStorage.getItem("user") + "/items");
         onValue(starCountRef, (snapshot) => {
             const data = snapshot.val();
             if(data){
@@ -115,7 +115,7 @@ class AddUpdateMenu extends Component {
         }]
 
         let updatededData = {};
-        const starCountRef = ref(db, "/restruants/" + localStorage.getItem("user") + "/items");
+        const starCountRef = ref(db, "/restruants/" + secureLocalStorage.getItem("user") + "/items");
         onValue(starCountRef, (snapshot) => {
             const data = snapshot.val();
             if(Array.isArray(data) && data.length > 0){
@@ -126,7 +126,7 @@ class AddUpdateMenu extends Component {
             console.log(typeof data, array, "Xvxvxcvxc")
         });
 
-        set(ref(db, "restruants/" + localStorage.getItem("user") + "/items"), {
+        set(ref(db, "restruants/" + secureLocalStorage.getItem("user") + "/items"), {
             ...updatededData
         }
         )

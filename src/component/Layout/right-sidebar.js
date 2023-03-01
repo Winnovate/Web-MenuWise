@@ -238,8 +238,8 @@ class RightSideBar extends Component {
                                     type="radio" 
                                     id="leftsidebarThemelight" 
                                     name="leftsidebarTheme" 
-                                    value="light"
-                                    checked={this.state.leftSideBarTheme === "light"}
+                                    value="dark"
+                                    checked={this.state.leftSideBarTheme === "dark"}
                                     onChange={this.changeLeftSidebarTheme} />
 
                                 <label htmlFor="leftsidebarThemelight">Light</label> 

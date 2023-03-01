@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 import { AvForm, AvField } from "availity-reactstrap-validation";
 //Import Action to copy breadcrumb items from local state to redux state
 import { setBreadcrumbItems } from "../../store/actions";
-
+import  secureLocalStorage  from  "react-secure-storage";
 //image
 import food from "../../assets/food.png"
 import { MDBDataTable } from 'mdbreact';
@@ -60,7 +60,7 @@ class AddCategory extends Component {
 
     getCategory(){
         const db = getDatabase();
-        const starCountRef = ref(db, "/restruants/" + localStorage.getItem("user") + "/menu-categories");
+        const starCountRef = ref(db, "/restruants/" + secureLocalStorage.getItem("user") + "/menu-categories");
         onValue(starCountRef, (snapshot) => {
             const data = snapshot.val();
             console.log(data, "dataaaaa")
@@ -126,14 +126,14 @@ class AddCategory extends Component {
     addCategory =() =>{
         const db = getDatabase();
         let prevCat = {};
-        const starCountRef = ref(db, "/restruants/" + localStorage.getItem("user") + "/menu-categories");
+        const starCountRef = ref(db, "/restruants/" + secureLocalStorage.getItem("user") + "/menu-categories");
         onValue(starCountRef, (snapshot) => {
             const data = snapshot.val();
             prevCat = {...prevCat, ...data}
             console.log(data, "dataaaaa")
         });
 
-        set(ref(db, "restruants/" + localStorage.getItem("user") + "/menu-categories"), {
+        set(ref(db, "restruants/" + secureLocalStorage.getItem("user") + "/menu-categories"), {
             ...prevCat,
             [this.state.categoryname + uniqid()]: {
                 id: this.state.categoryname + uniqid(),

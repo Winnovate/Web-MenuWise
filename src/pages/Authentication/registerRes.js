@@ -6,7 +6,7 @@ import { Container, Row, Col, Card, CardBody, Alert, Button } from 'reactstrap';
 import { setBreadcrumbItems } from "../../store/actions";
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import { getDatabase, ref, set } from "firebase/database";
-
+import  secureLocalStorage  from  "react-secure-storage";
 class RestaurantRegister extends Component {
     constructor(props) {
         super(props);
@@ -26,7 +26,7 @@ class RestaurantRegister extends Component {
 
     componentDidMount(){
         this.props.setBreadcrumbItems("Register your restaurant with us", this.state.breadcrumbItems);
-        localStorage.getItem("user");
+        secureLocalStorage.getItem("user");
     }
     changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value });
@@ -35,8 +35,8 @@ class RestaurantRegister extends Component {
 
     handleSubmit = (e) => {
         const db = getDatabase();
-        console.log(localStorage.getItem("user"), "sdfsdfsdf")
-        set(ref(db, "restruants/" + localStorage.getItem("user")), {
+        console.log(secureLocalStorage.getItem("user"), "sdfsdfsdf")
+        set(ref(db, "restruants/" + secureLocalStorage.getItem("user")), {
            "generalInfo": {
                 name: this.state.restaurantname,
                 address: this.state.address,

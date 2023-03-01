@@ -8,6 +8,7 @@ import { AvForm, AvField } from 'availity-reactstrap-validation';
 //firebase
 // import {auth} from "../../firebase-config";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import  secureLocalStorage  from  "react-secure-storage";
 class Pagesregister extends Component {
 
     constructor(props) {
@@ -40,7 +41,7 @@ class Pagesregister extends Component {
         createUserWithEmailAndPassword(auth, this.state.email, this.state.password)
         .then(user => {
         console.log(user);
-        localStorage.setItem("user", user.user.uid);
+        secureLocalStorage.setItem("user", user.user.uid);
         this.setState({ error: null });
         window.location.assign("/restaurantregister");
         // Perform additional logic for a successful login
