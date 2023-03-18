@@ -2,7 +2,9 @@
   "name": "lexa",
   "version": "0.1.0",
   "private": true,
-  "engines": { "node": "14.21.1" },
+  "engines": {
+    "node": "14.21.1"
+  },
   "dependencies": {
     "@fullcalendar/bootstrap": "^4.4.0",
     "@fullcalendar/core": "^4.4.0",
@@ -46,6 +48,7 @@
     "react-dom": "^16.13.1",
     "react-draft-wysiwyg": "^1.14.5",
     "react-dropzone": "^10.2.2",
+    "react-google-places-autocomplete": "^3.4.0",
     "react-image-lightbox": "^5.1.1",
     "react-jvectormap": "^0.0.16",
     "react-modal-video": "^1.2.3",

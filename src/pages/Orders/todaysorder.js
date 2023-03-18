@@ -17,6 +17,7 @@ import {
 import { setBreadcrumbItems } from "../../store/actions";
 
 import { MDBDataTable } from "mdbreact";
+import secureLocalStorage from "react-secure-storage";
 
 //Import datatable css
 import "../Tables/datatables.scss";
@@ -52,20 +53,11 @@ class TodaysOrder extends Component {
   }
 
   handleChange = (newStatus, orderId) => {
+    const token = secureLocalStorage.getItem("user");
     const db = getDatabase();
-    update(
-      ref(
-        db,
-        "/restruants/" +
-          localStorage.getItem("user") +
-          "/orders/" +
-          orderId +
-          "/"
-      ),
-      {
-        orderStatus: newStatus,
-      }
-    );
+    update(ref(db, "/restruants/" + token + "/orders/" + orderId + "/"), {
+      orderStatus: newStatus,
+    });
     this.getOrderList();
   };
 
