@@ -45,7 +45,9 @@ class TodaysOrder extends Component {
   }
 
   componentDidMount() {
-    this.getOrderList();
+    setInterval(() => {
+      this.getOrderList();
+    }, 2000);
     this.props.setBreadcrumbItems(
       "Todays's Order History",
       this.state.breadcrumbItems
