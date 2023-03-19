@@ -65,9 +65,9 @@ class TodaysOrder extends Component {
     const db = getDatabase(); //
     const orders = [];
     let data;
-
+    const token = secureLocalStorage.getItem("user");
     let dbRef = query(
-      ref(db, "/restruants/" + localStorage.getItem("user") + "/orders"),
+      ref(db, "/restruants/" + token + "/orders"),
       orderByChild("orderStatus"),
       equalTo("Pending")
     );
