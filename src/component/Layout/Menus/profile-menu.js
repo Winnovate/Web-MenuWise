@@ -52,7 +52,6 @@ class ProfileMenu extends Component {
       menu: !prevState.menu,
     }));
   }
-
   onMouseEnter() {
     this.setState({ menu: true });
   }
@@ -68,6 +67,7 @@ class ProfileMenu extends Component {
           isOpen={this.state.menu}
           onMouseOver={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
+          toggle={this.toggle}
           className="d-inline-block"
         >
           <DropdownToggle
@@ -95,6 +95,4 @@ class ProfileMenu extends Component {
     );
   }
 }
-
 export default withRouter(ProfileMenu);
-export var restaurant_name;

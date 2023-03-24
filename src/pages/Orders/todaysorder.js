@@ -45,7 +45,9 @@ class TodaysOrder extends Component {
   }
 
   componentDidMount() {
-    this.getOrderList();
+    setInterval(() => {
+      this.getOrderList();
+    }, 2000);
     this.props.setBreadcrumbItems(
       "Todays's Order History",
       this.state.breadcrumbItems
@@ -65,9 +67,9 @@ class TodaysOrder extends Component {
     const db = getDatabase(); //
     const orders = [];
     let data;
-
+    const token = secureLocalStorage.getItem("user");
     let dbRef = query(
-      ref(db, "/restruants/" + secureLocalStorage.getItem("user") + "/orders"),
+      ref(db, "/restruants/" + token + "/orders"),
       orderByChild("orderStatus"),
       equalTo("Pending")
     );
@@ -86,7 +88,7 @@ class TodaysOrder extends Component {
     });
 
     dbRef = query(
-      ref(db, "/restruants/" + secureLocalStorage.getItem("user") + "/orders"),
+      ref(db, "/restruants/" + token + "/orders"),
       orderByChild("orderStatus"),
       equalTo("In Progress")
     );
