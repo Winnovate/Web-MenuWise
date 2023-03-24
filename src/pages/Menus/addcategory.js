@@ -64,7 +64,7 @@ class AddCategory extends Component {
     const starCountRef = ref(db, "/restruants/" + token + "/menu-categories");
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
-      console.log(data, "dataaaaa");
+      //console.log(data, "dataaaaa");
       if (data === null) {
         this.setState({
           categoryFound: true,
@@ -123,7 +123,7 @@ class AddCategory extends Component {
         // array.push({
         //     name: data
         // })
-        console.log("arydsf", array);
+        // console.log("arydsf", array);
         this.setState({
           categorylist: array,
         });
@@ -194,7 +194,6 @@ class AddCategory extends Component {
       ],
       rows: this.state.categorylist || [],
     };
-    console.log(this.state.categorylist, "cat name");
     return (
       <React.Fragment>
         {this.state.categoryFound ? (

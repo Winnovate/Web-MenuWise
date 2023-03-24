@@ -67,7 +67,7 @@ class TodaysOrder extends Component {
     let data;
 
     let dbRef = query(
-      ref(db, "/restruants/" + localStorage.getItem("user") + "/orders"),
+      ref(db, "/restruants/" + secureLocalStorage.getItem("user") + "/orders"),
       orderByChild("orderStatus"),
       equalTo("Pending")
     );
@@ -86,7 +86,7 @@ class TodaysOrder extends Component {
     });
 
     dbRef = query(
-      ref(db, "/restruants/" + localStorage.getItem("user") + "/orders"),
+      ref(db, "/restruants/" + secureLocalStorage.getItem("user") + "/orders"),
       orderByChild("orderStatus"),
       equalTo("In Progress")
     );
