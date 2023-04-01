@@ -23,7 +23,7 @@ const Home = () => {
 
   const handleDownload = () => {
     window.open(
-      "https://github.com/Winnovate/Mobile-MenuWise/releases/download/prod/MenuWise.apk",
+      "https://github.com/Winnovate/Mobile-MenuWise/releases/download/1.4/app-release.apk",
       "_blank"
     );
   };
@@ -41,7 +41,7 @@ const Home = () => {
           </a>
           <a
             className="cus-links cus-cta"
-            href="https://github.com/Winnovate/Mobile-MenuWise/releases/download/prod/MenuWise.apk"
+            href="https://github.com/Winnovate/Mobile-MenuWise/releases/download/1.4/app-release.apk"
             target="_blank"
           >
             Download
