@@ -1,0 +1,144 @@
+.cus-d-block{
+display: block;
+}
+
+.cus-width{
+    width: 100%;
+}
+.cus-nav{
+    background-color: #4f515c28;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px;
+    color: white;
+}
+
+.cus-logo{
+    width: 40px;
+}
+
+.cus-links{
+    color: white;
+    padding: 0 5px;
+}
+.cus-links:active{
+    color: white;
+}
+
+.cus-links:visited{
+    color: white;
+}
+
+.cus-cta{
+    background-color: #725dcf;
+    padding: 10px 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.cus-section-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.cus-hero-left{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cus-hero-right{
+    width: 300px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.cus-heading-h2{
+    font-size: 14px;
+    font-weight:lighter;
+    margin-bottom: 20px;
+}
+
+.cus-btn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cus-btn div{
+    font-size: 20px;
+}
+
+.cus-btn span{
+    font-size: 10px;
+}
+
+@media (min-width: 600px) {
+    .cus-nav{
+        background-color: #4f515c28;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 40px;
+        color: white;
+    }
+    
+    .cus-logo{
+        width: 45px;
+    }
+    
+    .cus-links{
+        color: white;
+        padding: 0 5px;
+        font-size: 14px;
+    }
+
+    .cus-cta{
+        background-color: #725dcf;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-left: 10px;
+        font-size: 18px;
+    }
+
+    .cus-section-main{
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    
+    .cus-hero-left{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .cus-heading-h1{
+        font-size: 44px;
+        margin-bottom: 20px;
+        letter-spacing: 2px;
+    }
+    .cus-heading-h2{
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    .cus-btn{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cus-btn div{
+        font-size: 20px;
+    }
+    
+    .cus-btn span{
+        font-size: 10px;
+    }
+  }
